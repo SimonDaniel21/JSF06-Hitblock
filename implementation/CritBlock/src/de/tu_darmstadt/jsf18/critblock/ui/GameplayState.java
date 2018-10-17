@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.tu_darmstadt.jsf18.critblock.model.Map;
 import de.tu_darmstadt.jsf18.critblock.model.entities.Ball;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
@@ -78,7 +79,18 @@ public class GameplayState extends BasicGameState {
     	});
     	mouse_Clicked_Listener.addComponent(mouse_Clicked);
     	
-    	entityManager.addEntity(stateID, mouse_Clicked_Listener);    	
+    	entityManager.addEntity(stateID, mouse_Clicked_Listener);
+    	
+    	String mapFile = "width=5;height=5;"
+    			+ "0,1,0,0,1,"
+    			+ "1,1,1,0,1,"
+    			+ "0,0,0,1,0,"
+    			+ "0,0,0,0,0,"
+    			+ "1,1,1,1,1";
+    	
+    	for(Entity e : Map.loadBlocksFromFile(mapFile)){
+    		entityManager.addEntity(stateID, e);
+    	}
     	
     }
 
